@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kernoti – State Services Hub</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Kernoti</h1>
+      <p>Your gateway to Indian state services and student resources</p>
+    </header>
+
+    <main>
+      <section id="stateList" class="grid-container"></section>
+
+      <section id="stateDetails" class="hidden">
+        <button class="back-btn" onclick="goBack()">← Back</button>
+        <h2 id="stateName"></h2>
+        <div id="linksContainer" class="categories"></div>
+      </section>
+
+      <section id="feedbackSection">
+        <h2>Give Us Feedback</h2>
+        <form id="feedbackForm">
+          <input type="text" id="name" placeholder="Your Name" required />
+          <textarea id="message" placeholder="Your Feedback" required></textarea>
+          <button type="submit">Submit</button>
+        </form>
+        <div id="feedbackList"></div>
+      </section>
+    </main>
+
+    <footer>
+      <p>© Copyright (c) 2025 Rithin K
+
+All rights reserved.
+
+This project is original and intended for public educational and informational use only.
+
+No part of this project may be copied, modified, or used commercially without express written permission from the creator.
+
+For collaboration or licensing inquiries, contact me directly through, email : rithink120@gmail.com .
+</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
