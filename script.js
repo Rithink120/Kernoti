@@ -62,6 +62,38 @@ const keralaLinks = {
   ],
   "High School Education": [
     { name: "General Education Dept", url: "https://education.kerala.gov.in" }
+  ],
+  "Minister's Related": [
+    { name: "Office of the Cheif Minister", url: "https://www.cm.kerala.gov.in" }
+  ],
+  "Local Self-Government (Panchayats, Municipalities)": [
+    { name: "LSG Websites & E-Services", url: "https://lsgkerala.gov.in/en" }
+  ],
+  "Boards & Development Authorities": [
+    {name: "Kerala State Pollution Control Board", url: "https://kspcb.kerala.gov.in/" },
+    {name: "Vigilance & Anti-Corruption Bureau", url: "https://vigilance.kerala.gov.in/" },
+    {name: "Kerala State Housing Board", url: "http://www.kshb.kerala.gov.in" }
+  ],
+  "Tourism & Culture": [
+    {name: "Kerala Tourism - Official Site", url: "https://www.keralatourism.org" }
+  ],
+  "e-Governance & Core Portals": [
+    {name: "RTI Portal (Kerala)", url: "https://rtiportal.kerala.gov.in" },
+    {name: "Kerala Civil Supplies e-Citizen Portal", url: "https://ecitizen.civilsupplieskerala.gov.in" },
+    {name: "LMOMS - Legal Metrology Licensing System", url: "https://lmoms.kerala.gov.in" },
+    {name: "Directorate of Prosecution Kerala", url: "https://prosecution.kerala.gov.in" }
+  ],
+  "Public Utilities & Facilities": [
+    {name: "Kerala Water Authority", url: "http://www.kwa.kerala.gov.in" },
+    {name: "Kerala State Lotteries", url: "http://statelottery.kerala.gov.in" }
+  ],
+  "Infrastructure & Social Welfare": [
+    {name: "Kerala State Housing Board", url: "http://www.kshb.kerala.gov.in" },
+    {name: "Kerala Prisons & Correctional Services", url: "https://keralaprisons.gov.in" }
+  ],
+  "e-Services Dashboard / LSG Department": [
+    {name: "e-Application Portals Dashboard (IKM)", url: "https://dashboard.kerala.gov.in/e-services/websites.php" },
+    {name: "LSGD e‑Governance Portal", url: "https://lsgkerala.gov.in/en/e-governance" }
   ]
 };
 
@@ -134,3 +166,4 @@ feedbackForm.addEventListener("submit", function (e) {
 
   feedbackForm.reset();
 });
+
