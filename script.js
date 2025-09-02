@@ -8,17 +8,34 @@ const states = [
   "Uttar Pradesh", "Uttarakhand", "West Bengal"
 ];
 
+// State translations
+const stateTranslations = {
+  en: [...states],
+  ml: [
+    "ആന്ധ്രാപ്രദേശ്", "അരുണാചൽ പ്രദേശ്", "അസ്സാം", "ബീഹാർ", "ഛത്തീസ്ഗഡ്",
+    "ഗോവ", "ഗുജറാത്ത്", "ഹരിയാന", "ഹിമാചൽ പ്രദേശ്", "ഝാർഖണ്ഡ്",
+    "കർണാടക", "കേരളം", "മധ്യപ്രദേശ്", "മഹാരാഷ്ട്ര", "മണിപ്പൂർ",
+    "മേഘാലയ", "മിസോറം", "നാഗാലാൻഡ്", "ഒഡീഷ", "പഞ്ചാബ്",
+    "രാജസ്ഥാൻ", "സിക്കിം", "തമിഴ്‌നാട്", "తెలంగాణ", "ത്രിപുര",
+    "ഉത്തർപ്രദേശ്", "ഉത്തരാഖണ്ഡ്", "പശ്ചിമ ബംഗാൾ"
+  ],
+  hi: [
+    "आंध्र प्रदेश", "अरुणाचल प्रदेश", "असम", "बिहार", "छत्तीसगढ़",
+    "गोवा", "गुजरात", "हरियाणा", "हिमाचल प्रदेश", "झारखंड",
+    "कर्नाटक", "केरल", "मध्य प्रदेश", "महाराष्ट्र", "मणिपुर",
+    "मेघालय", "मिज़ोरम", "नागालैंड", "ओडिशा", "पंजाब",
+    "राजस्थान", "सिक्किम", "तमिलनाडु", "तेलंगाना", "त्रिपुरा",
+    "उत्तर प्रदेश", "उत्तराखंड", "पश्चिम बंगाल"
+  ]
+};
+
 const commonLinks = {
   "Government Services": [
     { name: "India Portal", url: "https://www.india.gov.in" },
     { name: "MyGov", url: "https://www.mygov.in" }
   ],
-  "Aadhaar": [
-    { name: "UIDAI Website", url: "https://uidai.gov.in" }
-  ],
-  "PAN Card": [
-    { name: "Apply for PAN", url: "https://www.incometax.gov.in/iec/foportal" }
-  ],
+  "Aadhaar": [{ name: "UIDAI Website", url: "https://uidai.gov.in" }],
+  "PAN Card": [{ name: "Apply for PAN", url: "https://www.incometax.gov.in/iec/foportal" }],
   "Exams": [
     { name: "UPSC", url: "https://upsc.gov.in" },
     { name: "SSC", url: "https://ssc.nic.in" }
@@ -27,75 +44,15 @@ const commonLinks = {
     { name: "National Scholarship Portal", url: "https://scholarships.gov.in" },
     { name: "AICTE Schemes", url: "https://aicte-india.org/schemes" }
   ],
-  "School & College Updates": [
-    { name: "CBSE", url: "https://cbse.gov.in" }
-  ],
-  "Notifications": [
-    { name: "Employment News", url: "https://employmentnews.gov.in" }
-  ]
+  "School & College Updates": [{ name: "CBSE", url: "https://cbse.gov.in" }],
+  "Notifications": [{ name: "Employment News", url: "https://employmentnews.gov.in" }]
 };
 
 const keralaLinks = {
-  "Kerala PSC": [
-    { name: "Kerala PSC Official", url: "https://www.keralapsc.gov.in" }
-  ],
-  "KTU (APJ Abdul Kalam Technological University)": [
-    { name: "KTU Portal", url: "https://ktu.edu.in" }
-  ],
-  "UPSC": [
-    { name: "UPSC Official", url: "https://upsc.gov.in" }
-  ],
-  "SSC": [
-    { name: "SSC Portal", url: "https://ssc.nic.in" }
-  ],
-  "Job Portals": [
-    { name: "NCS Portal", url: "https://www.ncs.gov.in" }
-  ],
-  "News & Awareness": [
-    { name: "PIB Kerala", url: "https://pib.gov.in/indexd.aspx?relid=15" },
-    { name: "Doordarshan News", url: "https://ddnews.gov.in" }
-  ],
-  "Police & Safety": [
-    { name: "Kerala Police", url: "https://keralapolice.gov.in" }
-  ],
-  "Higher Secondary Education": [
-    { name: "DHSE Kerala", url: "https://www.dhsekerala.gov.in" }
-  ],
-  "High School Education": [
-    { name: "General Education Dept", url: "https://education.kerala.gov.in" }
-  ],
-  "Minister's Related": [
-    { name: "Office of the Chief Minister", url: "https://www.cm.kerala.gov.in" }
-  ],
-  "Local Self-Government (Panchayats, Municipalities)": [
-    { name: "LSG Websites & E-Services", url: "https://lsgkerala.gov.in/en" }
-  ],
-  "Boards & Development Authorities": [
-    { name: "Kerala State Pollution Control Board", url: "https://kspcb.kerala.gov.in/" },
-    { name: "Vigilance & Anti-Corruption Bureau", url: "https://vigilance.kerala.gov.in/" },
-    { name: "Kerala State Housing Board", url: "http://www.kshb.kerala.gov.in" }
-  ],
-  "Tourism & Culture": [
-    { name: "Kerala Tourism - Official Site", url: "https://www.keralatourism.org" }
-  ],
-  "e-Governance & Core Portals": [
-    { name: "RTI Portal (Kerala)", url: "https://rtiportal.kerala.gov.in" },
-    { name: "Kerala Civil Supplies e-Citizen Portal", url: "https://ecitizen.civilsupplieskerala.gov.in" },
-    { name: "LMOMS - Legal Metrology Licensing System", url: "https://lmoms.kerala.gov.in" },
-    { name: "Directorate of Prosecution Kerala", url: "https://prosecution.kerala.gov.in" }
-  ],
-  "Public Utilities & Facilities": [
-    { name: "Kerala Water Authority", url: "http://www.kwa.kerala.gov.in" },
-    { name: "Kerala State Lotteries", url: "http://statelottery.kerala.gov.in" }
-  ],
-  "Infrastructure & Social Welfare": [
-    { name: "Kerala State Housing Board", url: "http://www.kshb.kerala.gov.in" },
-    { name: "Kerala Prisons & Correctional Services", url: "https://keralaprisons.gov.in" }
-  ],
-  "e-Services Dashboard / LSG Department": [
-    { name: "e-Application Portals Dashboard (IKM)", url: "https://dashboard.kerala.gov.in/e-services/websites.php" },
-    { name: "LSGD e-Governance Portal", url: "https://lsgkerala.gov.in/en/e-governance" }
-  ]
+  "Kerala PSC": [{ name: "Kerala PSC Official", url: "https://www.keralapsc.gov.in" }],
+  "KTU (APJ Abdul Kalam Technological University)": [{ name: "KTU Portal", url: "https://ktu.edu.in" }],
+  "Police & Safety": [{ name: "Kerala Police", url: "https://keralapolice.gov.in" }],
+  "Tourism & Culture": [{ name: "Kerala Tourism - Official Site", url: "https://www.keralatourism.org" }]
 };
 
 const stateList = document.getElementById("stateList");
@@ -103,13 +60,16 @@ const stateDetails = document.getElementById("stateDetails");
 const linksContainer = document.getElementById("linksContainer");
 const stateName = document.getElementById("stateName");
 
-// Populate state buttons
-states.forEach(state => {
-  const btn = document.createElement("button");
-  btn.textContent = state;
-  btn.onclick = () => showLinks(state);
-  stateList.appendChild(btn);
-});
+// ===================== RENDER STATES =====================
+function renderStates(lang = "en") {
+  stateList.innerHTML = "";
+  stateTranslations[lang].forEach((stateLabel, idx) => {
+    const btn = document.createElement("button");
+    btn.textContent = stateLabel;
+    btn.onclick = () => showLinks(states[idx], stateLabel); // English key, translated label
+    stateList.appendChild(btn);
+  });
+}
 
 // ===================== STATE SEARCH =====================
 const stateSearch = document.getElementById("stateSearch");
@@ -117,25 +77,20 @@ if (stateSearch) {
   stateSearch.addEventListener("input", () => {
     const query = stateSearch.value.toLowerCase();
     const buttons = stateList.getElementsByTagName("button");
-
     Array.from(buttons).forEach(btn => {
-      if (btn.textContent.toLowerCase().includes(query)) {
-        btn.style.display = "block";
-      } else {
-        btn.style.display = "none";
-      }
+      btn.style.display = btn.textContent.toLowerCase().includes(query) ? "block" : "none";
     });
   });
 }
 
-function showLinks(state) {
+function showLinks(stateEnglish, stateLabel) {
   stateList.classList.add("hidden");
   stateDetails.classList.remove("hidden");
-  stateName.textContent = state;
+  stateName.textContent = stateLabel;
   linksContainer.innerHTML = "";
 
   const allLinks = { ...commonLinks };
-  if (state === "Kerala") {
+  if (stateEnglish === "Kerala") {
     Object.assign(allLinks, keralaLinks);
   }
 
@@ -145,7 +100,7 @@ function showLinks(state) {
 
     const title = document.createElement("h3");
     title.textContent = category;
-    title.onclick = () => box.classList.toggle("open"); // collapsible
+    title.onclick = () => box.classList.toggle("open");
     box.appendChild(title);
 
     const ul = document.createElement("ul");
@@ -169,21 +124,76 @@ function goBack() {
   stateList.classList.remove("hidden");
 }
 
+// ===================== TRANSLATIONS =====================
+const translations = {
+  en: {
+    title: "Kernoti",
+    subtitle: "Your gateway to Indian state services and student resources",
+    feedbackTitle: "Give Us Feedback",
+    backBtn: "← Back",
+    searchPlaceholder: "Search for a state...",
+  },
+  ml: {
+    title: "കർണോറ്റി",
+    subtitle: "ഇന്ത്യൻ സംസ്ഥാന സേവനങ്ങളും വിദ്യാർത്ഥി സ്രോതസ്സുകളും",
+    feedbackTitle: "ഞങ്ങൾക്ക് അഭിപ്രായം നൽകുക",
+    backBtn: "← തിരികെ",
+    searchPlaceholder: "സംസ്ഥാനം തിരയൂ...",
+  },
+  hi: {
+    title: "केरनोटी",
+    subtitle: "भारतीय राज्य सेवाओं और छात्र संसाधनों का द्वार",
+    feedbackTitle: "हमें अपनी राय दें",
+    backBtn: "← वापस",
+    searchPlaceholder: "राज्य खोजें...",
+  }
+};
+
+const langPicker = document.getElementById("langPicker");
+langPicker.addEventListener("change", () => {
+  const lang = langPicker.value;
+  localStorage.setItem("language", lang);
+  applyLanguage(lang);
+  renderStates(lang);
+});
+
+function applyLanguage(lang) {
+  const t = translations[lang] || translations.en;
+  document.querySelector("header h1").textContent = t.title;
+  document.querySelector("header p").textContent = t.subtitle;
+  document.querySelector("#feedbackSection h2").textContent = t.feedbackTitle;
+  document.querySelector(".back-btn").textContent = t.backBtn;
+  document.querySelector("#stateSearch").placeholder = t.searchPlaceholder;
+}
+
 // ===================== FEEDBACK HANDLING =====================
 const feedbackForm = document.getElementById("feedbackForm");
 const feedbackList = document.getElementById("feedbackList");
 
-// Load saved feedbacks on page load
 window.addEventListener("DOMContentLoaded", () => {
+  // Feedbacks
   const saved = JSON.parse(localStorage.getItem("feedbacks")) || [];
   saved.forEach(fb => renderFeedback(fb.name, fb.msg));
 
-  // Load saved theme
+  // Theme
   const savedTheme = localStorage.getItem("theme");
   if (savedTheme === "dark") {
     document.body.classList.add("dark");
     document.getElementById("darkModeToggle").textContent = "☀️ Light Mode";
   }
+
+  // Theme color
+  const savedColor = localStorage.getItem("themeColor");
+  if (savedColor) {
+    document.documentElement.style.setProperty("--primary-color", savedColor);
+    document.getElementById("themePicker").value = savedColor;
+  }
+
+  // Language
+  const savedLang = localStorage.getItem("language") || "en";
+  langPicker.value = savedLang;
+  applyLanguage(savedLang);
+  renderStates(savedLang);
 });
 
 feedbackForm.addEventListener("submit", function (e) {
@@ -193,8 +203,6 @@ feedbackForm.addEventListener("submit", function (e) {
   if (!name || !msg) return;
 
   renderFeedback(name, msg);
-
-  // Save to localStorage
   const saved = JSON.parse(localStorage.getItem("feedbacks")) || [];
   saved.push({ name, msg });
   localStorage.setItem("feedbacks", JSON.stringify(saved));
@@ -210,7 +218,7 @@ function renderFeedback(name, msg) {
 }
 
 // ===================== CHATBOT FRONTEND LOGIC =====================
-let chatHistory = []; // store minimal history on client to keep context
+let chatHistory = [];
 
 async function sendMessage() {
   const input = document.getElementById("userInput");
@@ -229,20 +237,17 @@ async function sendMessage() {
       body: JSON.stringify({ message: text, history: chatHistory })
     });
 
-    if (!res.ok) {
-      throw new Error("Network response was not ok");
-    }
+    if (!res.ok) throw new Error("Network error");
 
     const data = await res.json();
     const reply = data.reply || "Sorry, I couldn’t respond.";
     thinkingEl.textContent = reply;
 
-    // Update client-side chat history (trim to keep it light)
+    speak(reply);
+
     chatHistory.push({ role: "user", content: text });
     chatHistory.push({ role: "assistant", content: reply });
-    if (chatHistory.length > 14) {
-      chatHistory = chatHistory.slice(-14);
-    }
+    if (chatHistory.length > 14) chatHistory = chatHistory.slice(-14);
   } catch (err) {
     thinkingEl.textContent = "Error connecting to AI.";
     console.error(err);
@@ -259,7 +264,6 @@ function appendMessage(sender, text) {
   return msgBox;
 }
 
-// Optional: send on Enter
 document.addEventListener("keydown", (e) => {
   const input = document.getElementById("userInput");
   if (document.activeElement === input && e.key === "Enter") {
@@ -272,20 +276,13 @@ document.addEventListener("keydown", (e) => {
 const chatMessages = document.getElementById("chat-messages");
 const chatInput = document.getElementById("chat-input");
 const chatToggle = document.getElementById("chat-toggle");
-
 let minimized = false;
 
 chatToggle.addEventListener("click", () => {
   minimized = !minimized;
-  if (minimized) {
-    chatMessages.style.display = "none";
-    chatInput.style.display = "none";
-    chatToggle.textContent = "⬆"; // expand
-  } else {
-    chatMessages.style.display = "block";
-    chatInput.style.display = "flex";
-    chatToggle.textContent = "_"; // minimize
-  }
+  chatMessages.style.display = minimized ? "none" : "block";
+  chatInput.style.display = minimized ? "none" : "flex";
+  chatToggle.textContent = minimized ? "⬆" : "_";
 });
 
 // ===================== DARK MODE TOGGLE =====================
@@ -302,3 +299,42 @@ darkModeToggle.addEventListener("click", () => {
   }
 });
 
+// ===================== THEME PICKER =====================
+const themePicker = document.getElementById("themePicker");
+themePicker.addEventListener("change", () => {
+  const color = themePicker.value;
+  document.documentElement.style.setProperty("--primary-color", color);
+  localStorage.setItem("themeColor", color);
+});
+
+// ===================== VOICE INPUT & TTS =====================
+const voiceBtn = document.getElementById("voiceBtn");
+let recognition;
+
+if ("webkitSpeechRecognition" in window) {
+  recognition = new webkitSpeechRecognition();
+  recognition.continuous = false;
+  recognition.interimResults = false;
+  recognition.lang = "en-US";
+
+  voiceBtn.addEventListener("click", () => {
+    recognition.start();
+    voiceBtn.textContent = "🎙️...";
+  });
+
+  recognition.onresult = (event) => {
+    const transcript = event.results[0][0].transcript;
+    document.getElementById("userInput").value = transcript;
+    voiceBtn.textContent = "🎤";
+  };
+
+  recognition.onerror = () => {
+    voiceBtn.textContent = "🎤";
+  };
+}
+
+function speak(text) {
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = "en-US";
+  window.speechSynthesis.speak(utterance);
+}
