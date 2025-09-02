@@ -9,7 +9,10 @@
 <body>
 <!-- Chatbot -->
 <div id="chatbot">
-  <div id="chat-header">KERNOTI AI BOT 🤖</div>
+  <div id="chat-header">
+    <span>KERNOTI AI BOT 🤖</span>
+    <button id="chat-toggle">_</button>
+  </div>
   <div id="chat-messages"></div>
   <div id="chat-input">
     <input type="text" id="userInput" placeholder="Ask me anything..." />
@@ -21,9 +24,16 @@
     <header>
       <h1>Kernoti</h1>
       <p>Your gateway to Indian state services and student resources</p>
+      <!-- Dark mode toggle -->
+      <button id="darkModeToggle">🌙 Dark Mode</button>
     </header>
 
     <main>
+      <!-- Search bar for states -->
+      <div id="searchBar">
+        <input type="text" id="stateSearch" placeholder="Search for a state..." />
+      </div>
+
       <section id="stateList" class="grid-container"></section>
 
       <section id="stateDetails" class="hidden">
@@ -60,4 +70,5 @@ For collaboration or licensing inquiries, contact me directly through, email : r
   <script src="script.js"></script>
 </body>
 </html>
+
 
