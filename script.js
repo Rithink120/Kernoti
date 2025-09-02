@@ -111,6 +111,23 @@ states.forEach(state => {
   stateList.appendChild(btn);
 });
 
+// ===================== STATE SEARCH =====================
+const stateSearch = document.getElementById("stateSearch");
+if (stateSearch) {
+  stateSearch.addEventListener("input", () => {
+    const query = stateSearch.value.toLowerCase();
+    const buttons = stateList.getElementsByTagName("button");
+
+    Array.from(buttons).forEach(btn => {
+      if (btn.textContent.toLowerCase().includes(query)) {
+        btn.style.display = "block";
+      } else {
+        btn.style.display = "none";
+      }
+    });
+  });
+}
+
 function showLinks(state) {
   stateList.classList.add("hidden");
   stateDetails.classList.remove("hidden");
@@ -128,6 +145,7 @@ function showLinks(state) {
 
     const title = document.createElement("h3");
     title.textContent = category;
+    title.onclick = () => box.classList.toggle("open"); // collapsible
     box.appendChild(title);
 
     const ul = document.createElement("ul");
@@ -155,18 +173,41 @@ function goBack() {
 const feedbackForm = document.getElementById("feedbackForm");
 const feedbackList = document.getElementById("feedbackList");
 
+// Load saved feedbacks on page load
+window.addEventListener("DOMContentLoaded", () => {
+  const saved = JSON.parse(localStorage.getItem("feedbacks")) || [];
+  saved.forEach(fb => renderFeedback(fb.name, fb.msg));
+
+  // Load saved theme
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "dark") {
+    document.body.classList.add("dark");
+    document.getElementById("darkModeToggle").textContent = "☀️ Light Mode";
+  }
+});
+
 feedbackForm.addEventListener("submit", function (e) {
   e.preventDefault();
-  const name = document.getElementById("name").value;
-  const msg = document.getElementById("message").value;
+  const name = document.getElementById("name").value.trim();
+  const msg = document.getElementById("message").value.trim();
+  if (!name || !msg) return;
 
+  renderFeedback(name, msg);
+
+  // Save to localStorage
+  const saved = JSON.parse(localStorage.getItem("feedbacks")) || [];
+  saved.push({ name, msg });
+  localStorage.setItem("feedbacks", JSON.stringify(saved));
+
+  feedbackForm.reset();
+});
+
+function renderFeedback(name, msg) {
   const feedbackItem = document.createElement("div");
   feedbackItem.className = "feedback-item";
   feedbackItem.innerHTML = `<strong>${name}:</strong><br>${msg}`;
   feedbackList.appendChild(feedbackItem);
-
-  feedbackForm.reset();
-});
+}
 
 // ===================== CHATBOT FRONTEND LOGIC =====================
 let chatHistory = []; // store minimal history on client to keep context
@@ -183,11 +224,10 @@ async function sendMessage() {
 
   try {
     const res = await fetch("https://kernoti-backend.onrender.com/chat", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ message: text, history: chatHistory })
-});
-
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: text, history: chatHistory })
+    });
 
     if (!res.ok) {
       throw new Error("Network response was not ok");
@@ -225,6 +265,40 @@ document.addEventListener("keydown", (e) => {
   if (document.activeElement === input && e.key === "Enter") {
     e.preventDefault();
     sendMessage();
+  }
+});
+
+// ===================== CHATBOT TOGGLE =====================
+const chatMessages = document.getElementById("chat-messages");
+const chatInput = document.getElementById("chat-input");
+const chatToggle = document.getElementById("chat-toggle");
+
+let minimized = false;
+
+chatToggle.addEventListener("click", () => {
+  minimized = !minimized;
+  if (minimized) {
+    chatMessages.style.display = "none";
+    chatInput.style.display = "none";
+    chatToggle.textContent = "⬆"; // expand
+  } else {
+    chatMessages.style.display = "block";
+    chatInput.style.display = "flex";
+    chatToggle.textContent = "_"; // minimize
+  }
+});
+
+// ===================== DARK MODE TOGGLE =====================
+const darkModeToggle = document.getElementById("darkModeToggle");
+darkModeToggle.addEventListener("click", () => {
+  document.body.classList.toggle("dark");
+
+  if (document.body.classList.contains("dark")) {
+    darkModeToggle.textContent = "☀️ Light Mode";
+    localStorage.setItem("theme", "dark");
+  } else {
+    darkModeToggle.textContent = "🌙 Dark Mode";
+    localStorage.setItem("theme", "light");
   }
 });
 
