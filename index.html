@@ -16,6 +16,7 @@
   <div id="chat-messages"></div>
   <div id="chat-input">
     <input type="text" id="userInput" placeholder="Ask me anything..." />
+    <button id="voiceBtn">🎤</button>
     <button onclick="sendMessage()">Send</button>
   </div>
 </div>
@@ -24,8 +25,27 @@
     <header>
       <h1>Kernoti</h1>
       <p>Your gateway to Indian state services and student resources</p>
+      
       <!-- Dark mode toggle -->
       <button id="darkModeToggle">🌙 Dark Mode</button>
+      
+      <!-- Theme color picker -->
+      <label for="themePicker">🎨 Theme:</label>
+      <select id="themePicker">
+        <option value="#2a3eb1">Blue</option>
+        <option value="#2a9d8f">Green</option>
+        <option value="#e76f51">Orange</option>
+        <option value="#9b5de5">Purple</option>
+        <option value="#ff006e">Pink</option>
+      </select>
+
+      <!-- Language selector -->
+      <label for="langPicker">🌐 Language:</label>
+      <select id="langPicker">
+        <option value="en" selected>English</option>
+        <option value="ml">മലയാളം</option>
+        <option value="hi">हिन्दी</option>
+      </select>
     </header>
 
     <main>
