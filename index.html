@@ -1,94 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Kernoti – State Services Hub</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kernoti – Government Exam & Resource Hub</title>
+    <meta name="description" content="Kernoti - Gateway to Indian state services, exams, scholarships & an AI assistant." />
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<!-- Chatbot -->
-<div id="chatbot">
-  <div id="chat-header">
-    <span>KERNOTI AI BOT 🤖</span>
-    <button id="chat-toggle">_</button>
-  </div>
-  <div id="chat-messages"></div>
-  <div id="chat-input">
-    <input type="text" id="userInput" placeholder="Ask me anything..." />
-    <button id="voiceBtn">🎤</button>
-    <button onclick="sendMessage()">Send</button>
-  </div>
-</div>
+    <!-- NAVBAR -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-left">
+            <div class="logo" aria-hidden="true">KERNOTI</div>
+            <div class="brand-sub">
+                <h1 class="visually-hidden">Kernoti</h1>
+                <p class="visually-hidden">Your gateway to Indian state services and student resources</p>
+            </div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#states">States</a></li>
+            <li><a href="#feedbackSection">Feedback</a></li>
+            <li><a href="#chatbot">Chatbot</a></li>
+        </ul>
+        <div class="nav-actions" aria-hidden="false">
+            <label for="themePicker" class="sr-only">Theme color</label>
+            <select id="themePicker" title="Theme color picker" aria-label="Theme color">
+                <option value="#2a3eb1">Blue</option>
+                <option value="#2a9d8f">Green</option>
+                <option value="#e76f51">Orange</option>
+                <option value="#9b5de5">Purple</option>
+                <option value="#ff006e">Pink</option>
+            </select>
+            <label for="langPicker" class="sr-only">Language</label>
+            <select id="langPicker" title="Language selector" aria-label="Select language">
+                <option value="en">English</option>
+                <option value="ml">മലയാളം</option>
+                <option value="hi">हिन्दी</option>
+            </select>
+            <button id="darkModeToggle" aria-pressed="false" title="Toggle dark mode">🌙</button>
+        </div>
+    </nav>
 
-  <div class="container">
-    <header>
-      <h1>Kernoti</h1>
-      <p>Your gateway to Indian state services and student resources</p>
-      
-      <!-- Dark mode toggle -->
-      <button id="darkModeToggle">🌙 Dark Mode</button>
-      
-      <!-- Theme color picker -->
-      <label for="themePicker">🎨 Theme:</label>
-      <select id="themePicker">
-        <option value="#2a3eb1">Blue</option>
-        <option value="#2a9d8f">Green</option>
-        <option value="#e76f51">Orange</option>
-        <option value="#9b5de5">Purple</option>
-        <option value="#ff006e">Pink</option>
-      </select>
-
-      <!-- Language selector -->
-      <label for="langPicker">🌐 Language:</label>
-      <select id="langPicker">
-        <option value="en" selected>English</option>
-        <option value="ml">മലയാളം</option>
-        <option value="hi">हिन्दी</option>
-      </select>
+    <!-- HERO -->
+    <header id="hero" class="hero">
+        <div class="hero-left">
+            <h1 id="heroTitle">All-In-One Platform For Government Exams</h1>
+            <p id="heroSubtitle">Explore state portals, upcoming exams, scholarships & more. Get instant help with our AI chatbot.</p>
+            <div class="hero-ctas">
+                <button class="cta-btn" onclick="scrollToStates()">Start Exploring</button>
+                <button class="cta-btn ghost" onclick="toggleChatbot()">Chat with AI Bot</button>
+            </div>
+            <div class="controls-compact">
+                <label for="stateSearch" class="sr-only">Search states</label>
+                <input id="stateSearch" type="search" placeholder="Search for a state..." />
+            </div>
+        </div>
+        <div class="hero-right" aria-hidden="true">
+            <div class="hero-card">
+                <img src="assets/Screenshot 2025-09-13 205918.png" alt="Kernoti illustration" />
+            </div>
+        </div>
     </header>
 
-    <main>
-      <!-- Search bar for states -->
-      <div id="searchBar">
-        <input type="text" id="stateSearch" placeholder="Search for a state..." />
-      </div>
+    <main class="container">
+        <!-- STATES GRID -->
+        <section id="states" class="section-states" aria-labelledby="statesHeading">
+            <h2 id="statesHeading" class="section-title">States & Services</h2>
+            <div id="stateList" class="grid-container" role="list"></div>
+            <section id="stateDetails" class="state-details hidden" aria-hidden="true">
+                <button class="back-btn" onclick="goBack()">← Back</button>
+                <h2 id="stateName"></h2>
+                <div id="linksContainer" class="categories"></div>
+            </section>
+        </section>
 
-      <section id="stateList" class="grid-container"></section>
-
-      <section id="stateDetails" class="hidden">
-        <button class="back-btn" onclick="goBack()">← Back</button>
-        <h2 id="stateName"></h2>
-        <div id="linksContainer" class="categories"></div>
-      </section>
-
-      <section id="feedbackSection">
-        <h2>Give Us Feedback</h2>
-        <form id="feedbackForm">
-          <input type="text" id="name" placeholder="Your Name" required />
-          <textarea id="message" placeholder="Your Feedback" required></textarea>
-          <button type="submit">Submit</button>
-        </form>
-        <div id="feedbackList"></div>
-      </section>
+        <!-- FEEDBACK -->
+        <section id="feedbackSection" class="elevated-card" aria-labelledby="feedbackHeading">
+            <h2 id="feedbackHeading">Give Us Feedback</h2>
+            <form id="feedbackForm" aria-label="Feedback form">
+                <input type="text" id="name" placeholder="Your Name" required />
+                <textarea id="message" placeholder="Your Feedback" required></textarea>
+                <button type="submit">Submit</button>
+            </form>
+            <div id="feedbackList" aria-live="polite"></div>
+        </section>
     </main>
 
-    <footer>
-      <p>© Copyright (c) 2025 Rithin K
+    <!-- CHATBOT -->
+    <div id="chatbot" class="chatbot-card">
+        <div id="chat-header" class="chat-header">
+            <div class="chat-title">KERNOTI AI BOT 🤖</div>
+            <div class="chat-actions">
+                <button id="chat-toggle" aria-label="Minimize chatbot">_</button>
+            </div>
+        </div>
+        <div id="chat-messages" class="chat-messages" role="log" aria-live="polite"></div>
+        <div id="chat-input" class="chat-input">
+            <input type="text" id="userInput" placeholder="Ask me anything..." aria-label="Chat input" />
+            <button id="voiceBtn" title="Voice Input" aria-label="Voice input">🎤</button>
+            <button id="sendBtn" title="Send" aria-label="Send message">➤</button>
+        </div>
+    </div>
 
-All rights reserved.
-
-This project is original and intended for public educational and informational use only.
-
-No part of this project may be copied, modified, or used commercially without express written permission from the creator.
-
-For collaboration or licensing inquiries, contact me directly through, email : rithink120@gmail.com .
-</p>
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <p>© 2025 Rithin K — All rights reserved. This project is for public educational & informational use. Contact: <a href="mailto:rithink120@gmail.com">rithink120@gmail.com</a></p>
+        </div>
     </footer>
-  </div>
 
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
-
-
