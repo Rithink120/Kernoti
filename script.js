@@ -389,4 +389,46 @@ function speak(text) {
   window.speechSynthesis.cancel();
   window.speechSynthesis.speak(utterance);
 }
+/* ========== EXAM SECTION ========== */
+const examTabs = document.querySelectorAll(".exam-tab");
+const examContent = document.getElementById("examContent");
+
+const examResources = {
+  description: `
+    <h3>Exam Descriptions</h3>
+    <p>Learn about major competitive exams:</p>
+    <ul>
+      <li><a href="https://upsc.gov.in" target="_blank">UPSC Civil Services Exam Overview</a></li>
+      <li><a href="https://ssc.nic.in" target="_blank">SSC CGL & CHSL Overview</a></li>
+      <li><a href="https://www.ibps.in" target="_blank">IBPS Banking Exams</a></li>
+    </ul>
+  `,
+  structure: `
+    <h3>Exam Structure</h3>
+    <p>Understand exam patterns:</p>
+    <ul>
+      <li>UPSC: Prelims → Mains → Interview</li>
+      <li>SSC: Tier 1 (Objective) → Tier 2 (Descriptive/Skill)</li>
+      <li>Banking: Prelims → Mains → Interview</li>
+    </ul>
+  `,
+  notes: `
+    <h3>Notes & Resources</h3>
+    <p>Free notes & PDFs:</p>
+    <ul>
+      <li><a href="https://ncert.nic.in/textbook.php" target="_blank">NCERT Books (Free)</a></li>
+      <li><a href="https://www.insightsonindia.com" target="_blank">Insights IAS Notes</a></li>
+      <li><a href="https://www.gktoday.in/" target="_blank">GK Today</a></li>
+    </ul>
+  `
+};
+
+examTabs.forEach(tab => {
+  tab.addEventListener("click", () => {
+    examTabs.forEach(t => t.classList.remove("active"));
+    tab.classList.add("active");
+    const tabKey = tab.dataset.tab;
+    examContent.innerHTML = examResources[tabKey] || "<p>No data available.</p>";
+  });
+});
 
